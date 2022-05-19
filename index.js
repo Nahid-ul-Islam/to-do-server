@@ -34,6 +34,12 @@ async function run() {
             res.send(result);
         });
 
+        app.post('/tasks', async (req, res) => {
+            const newTask = req.body;
+            console.log('adding new task', newTask);
+            const result = await taskCollection.insertOne(newTask);
+            res.send(result);
+        });
 
         app.delete('/tasks/:id', async (req, res) => {
             const id = req.params.id;
